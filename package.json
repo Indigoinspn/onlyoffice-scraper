@@ -1,0 +1,28 @@
+{
+  "name": "onlyoffice-scraper",
+  "version": "1.0.0",
+  "description": "Скрипт для сбора данных об офисах ONLYOFFICE",
+  "main": "src/scraper.js",
+  "scripts": {
+    "scrape": "node src/cli.js",
+    "format": "prettier --write .",
+    "test": "jest tests/unit/ tests/integration/",
+    "test:e2e": "playwright test tests/e2e/",
+    "test:all": "npm test && npm run test:e2e"
+  },
+  "keywords": [
+    "scraper",
+    "playwright",
+    "automation"
+  ],
+  "author": "Тatiana",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "jest": "^30.2.0",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0"
+  }
+}
