@@ -9,18 +9,6 @@ const TEST_OUTPUT_PATH = 'data/test-offices-e2e.csv';
 
 test.describe.configure({ mode: 'serial' });
 
-test.afterAll(async () => {
-  // Remove temporary file after tests
-  if (fs.existsSync(TEST_OUTPUT_PATH)) {
-    fs.unlinkSync(TEST_OUTPUT_PATH);
-  }
-  // Remove folder after tests if empty
-  const dir = path.dirname(TEST_OUTPUT_PATH);
-  if (fs.existsSync(dir) && fs.readdirSync(dir).length === 0) {
-    fs.rmdirSync(dir);
-  }
-});
-
 test('E2E: should scrape real offices and save valid CSV', async () => {
   // 1. Scraping data
   const offices = await scrapeOfficesData();
@@ -45,7 +33,7 @@ test('E2E: should scrape real offices and save valid CSV', async () => {
 
   // 5. Checking saved data
   const csvContent = fs.readFileSync(TEST_OUTPUT_PATH, 'utf8');
-  expect(csvContent).toContain('Locality;CompanyName'); //Titles
+  expect(csvContent).toContain('"Locality";"CompanyName"'); //Titles
   expect(csvContent).toContain(sortedOffices[0].CompanyName); // First office company name
 
   const lastOffice = sortedOffices[sortedOffices.length - 1];
